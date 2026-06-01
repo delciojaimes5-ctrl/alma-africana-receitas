@@ -14,16 +14,387 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      categories: {
+        Row: {
+          id: string
+          name: string
+          slug: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          slug: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          slug?: string
+        }
+        Relationships: []
+      }
+      comments: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          recipe_id: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          recipe_id: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          recipe_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "comments_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      countries: {
+        Row: {
+          id: string
+          name: string
+          region: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          region: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          region?: string
+        }
+        Relationships: []
+      }
+      favourites: {
+        Row: {
+          created_at: string
+          id: string
+          recipe_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          recipe_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          recipe_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favourites_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ingredients: {
+        Row: {
+          id: string
+          name: string
+          order_index: number
+          quantity: string | null
+          recipe_id: string
+          unit: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          order_index?: number
+          quantity?: string | null
+          recipe_id: string
+          unit?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          order_index?: number
+          quantity?: string | null
+          recipe_id?: string
+          unit?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ingredients_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          is_read: boolean
+          link: string | null
+          message: string
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          link?: string | null
+          message: string
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          link?: string | null
+          message?: string
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profile_likes: {
+        Row: {
+          created_at: string
+          id: string
+          liked_user_id: string
+          liker_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          liked_user_id: string
+          liker_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          liked_user_id?: string
+          liker_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          birth_date: string | null
+          created_at: string
+          full_name: string
+          id: string
+          is_suspended: boolean
+          phone: string | null
+          updated_at: string
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          birth_date?: string | null
+          created_at?: string
+          full_name: string
+          id: string
+          is_suspended?: boolean
+          phone?: string | null
+          updated_at?: string
+          username: string
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          birth_date?: string | null
+          created_at?: string
+          full_name?: string
+          id?: string
+          is_suspended?: boolean
+          phone?: string | null
+          updated_at?: string
+          username?: string
+        }
+        Relationships: []
+      }
+      recipe_likes: {
+        Row: {
+          created_at: string
+          id: string
+          recipe_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          recipe_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          recipe_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "recipe_likes_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      recipes: {
+        Row: {
+          catalogue_type: Database["public"]["Enums"]["catalogue_type"]
+          category: string
+          country: string
+          created_at: string
+          description: string
+          id: string
+          image_url: string | null
+          prep_time: number | null
+          region: string | null
+          rejection_reason: string | null
+          servings: number | null
+          status: Database["public"]["Enums"]["recipe_status"]
+          title: string
+          updated_at: string
+          user_id: string
+          youtube_url: string | null
+          youtube_video_id: string | null
+        }
+        Insert: {
+          catalogue_type?: Database["public"]["Enums"]["catalogue_type"]
+          category: string
+          country: string
+          created_at?: string
+          description: string
+          id?: string
+          image_url?: string | null
+          prep_time?: number | null
+          region?: string | null
+          rejection_reason?: string | null
+          servings?: number | null
+          status?: Database["public"]["Enums"]["recipe_status"]
+          title: string
+          updated_at?: string
+          user_id: string
+          youtube_url?: string | null
+          youtube_video_id?: string | null
+        }
+        Update: {
+          catalogue_type?: Database["public"]["Enums"]["catalogue_type"]
+          category?: string
+          country?: string
+          created_at?: string
+          description?: string
+          id?: string
+          image_url?: string | null
+          prep_time?: number | null
+          region?: string | null
+          rejection_reason?: string | null
+          servings?: number | null
+          status?: Database["public"]["Enums"]["recipe_status"]
+          title?: string
+          updated_at?: string
+          user_id?: string
+          youtube_url?: string | null
+          youtube_video_id?: string | null
+        }
+        Relationships: []
+      }
+      steps: {
+        Row: {
+          description: string
+          id: string
+          recipe_id: string
+          step_number: number
+        }
+        Insert: {
+          description: string
+          id?: string
+          recipe_id: string
+          step_number: number
+        }
+        Update: {
+          description?: string
+          id?: string
+          recipe_id?: string
+          step_number?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "steps_recipe_id_fkey"
+            columns: ["recipe_id"]
+            isOneToOne: false
+            referencedRelation: "recipes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "user" | "admin"
+      catalogue_type: "official" | "community"
+      recipe_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +521,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["user", "admin"],
+      catalogue_type: ["official", "community"],
+      recipe_status: ["pending", "approved", "rejected"],
+    },
   },
 } as const
