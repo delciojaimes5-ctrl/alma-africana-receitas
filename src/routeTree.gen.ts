@@ -9,38 +9,251 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RecuperarContaRouteImport } from './routes/recuperar-conta'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as CriarContaRouteImport } from './routes/criar-conta'
+import { Route as CatalogoOficialRouteImport } from './routes/catalogo-oficial'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ReceitaIdRouteImport } from './routes/receita.$id'
+import { Route as PerfilUsernameRouteImport } from './routes/perfil.$username'
+import { Route as AuthenticatedPublicarReceitaRouteImport } from './routes/_authenticated/publicar-receita'
+import { Route as AuthenticatedPesquisaRouteImport } from './routes/_authenticated/pesquisa'
+import { Route as AuthenticatedNotificacoesRouteImport } from './routes/_authenticated/notificacoes'
+import { Route as AuthenticatedMinhasReceitasRouteImport } from './routes/_authenticated/minhas-receitas'
+import { Route as AuthenticatedFavoritosRouteImport } from './routes/_authenticated/favoritos'
+import { Route as AuthenticatedComunidadeRouteImport } from './routes/_authenticated/comunidade'
+import { Route as AuthenticatedPerfilEditarRouteImport } from './routes/_authenticated/perfil.editar'
 
+const RecuperarContaRoute = RecuperarContaRouteImport.update({
+  id: '/recuperar-conta',
+  path: '/recuperar-conta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CriarContaRoute = CriarContaRouteImport.update({
+  id: '/criar-conta',
+  path: '/criar-conta',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CatalogoOficialRoute = CatalogoOficialRouteImport.update({
+  id: '/catalogo-oficial',
+  path: '/catalogo-oficial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReceitaIdRoute = ReceitaIdRouteImport.update({
+  id: '/receita/$id',
+  path: '/receita/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PerfilUsernameRoute = PerfilUsernameRouteImport.update({
+  id: '/perfil/$username',
+  path: '/perfil/$username',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedPublicarReceitaRoute =
+  AuthenticatedPublicarReceitaRouteImport.update({
+    id: '/publicar-receita',
+    path: '/publicar-receita',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedPesquisaRoute = AuthenticatedPesquisaRouteImport.update({
+  id: '/pesquisa',
+  path: '/pesquisa',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedNotificacoesRoute =
+  AuthenticatedNotificacoesRouteImport.update({
+    id: '/notificacoes',
+    path: '/notificacoes',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedMinhasReceitasRoute =
+  AuthenticatedMinhasReceitasRouteImport.update({
+    id: '/minhas-receitas',
+    path: '/minhas-receitas',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedFavoritosRoute = AuthenticatedFavoritosRouteImport.update({
+  id: '/favoritos',
+  path: '/favoritos',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedComunidadeRoute = AuthenticatedComunidadeRouteImport.update({
+  id: '/comunidade',
+  path: '/comunidade',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedPerfilEditarRoute =
+  AuthenticatedPerfilEditarRouteImport.update({
+    id: '/perfil/editar',
+    path: '/perfil/editar',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/catalogo-oficial': typeof CatalogoOficialRoute
+  '/criar-conta': typeof CriarContaRoute
+  '/login': typeof LoginRoute
+  '/recuperar-conta': typeof RecuperarContaRoute
+  '/comunidade': typeof AuthenticatedComunidadeRoute
+  '/favoritos': typeof AuthenticatedFavoritosRoute
+  '/minhas-receitas': typeof AuthenticatedMinhasReceitasRoute
+  '/notificacoes': typeof AuthenticatedNotificacoesRoute
+  '/pesquisa': typeof AuthenticatedPesquisaRoute
+  '/publicar-receita': typeof AuthenticatedPublicarReceitaRoute
+  '/perfil/$username': typeof PerfilUsernameRoute
+  '/receita/$id': typeof ReceitaIdRoute
+  '/perfil/editar': typeof AuthenticatedPerfilEditarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/catalogo-oficial': typeof CatalogoOficialRoute
+  '/criar-conta': typeof CriarContaRoute
+  '/login': typeof LoginRoute
+  '/recuperar-conta': typeof RecuperarContaRoute
+  '/comunidade': typeof AuthenticatedComunidadeRoute
+  '/favoritos': typeof AuthenticatedFavoritosRoute
+  '/minhas-receitas': typeof AuthenticatedMinhasReceitasRoute
+  '/notificacoes': typeof AuthenticatedNotificacoesRoute
+  '/pesquisa': typeof AuthenticatedPesquisaRoute
+  '/publicar-receita': typeof AuthenticatedPublicarReceitaRoute
+  '/perfil/$username': typeof PerfilUsernameRoute
+  '/receita/$id': typeof ReceitaIdRoute
+  '/perfil/editar': typeof AuthenticatedPerfilEditarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/catalogo-oficial': typeof CatalogoOficialRoute
+  '/criar-conta': typeof CriarContaRoute
+  '/login': typeof LoginRoute
+  '/recuperar-conta': typeof RecuperarContaRoute
+  '/_authenticated/comunidade': typeof AuthenticatedComunidadeRoute
+  '/_authenticated/favoritos': typeof AuthenticatedFavoritosRoute
+  '/_authenticated/minhas-receitas': typeof AuthenticatedMinhasReceitasRoute
+  '/_authenticated/notificacoes': typeof AuthenticatedNotificacoesRoute
+  '/_authenticated/pesquisa': typeof AuthenticatedPesquisaRoute
+  '/_authenticated/publicar-receita': typeof AuthenticatedPublicarReceitaRoute
+  '/perfil/$username': typeof PerfilUsernameRoute
+  '/receita/$id': typeof ReceitaIdRoute
+  '/_authenticated/perfil/editar': typeof AuthenticatedPerfilEditarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/catalogo-oficial'
+    | '/criar-conta'
+    | '/login'
+    | '/recuperar-conta'
+    | '/comunidade'
+    | '/favoritos'
+    | '/minhas-receitas'
+    | '/notificacoes'
+    | '/pesquisa'
+    | '/publicar-receita'
+    | '/perfil/$username'
+    | '/receita/$id'
+    | '/perfil/editar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/catalogo-oficial'
+    | '/criar-conta'
+    | '/login'
+    | '/recuperar-conta'
+    | '/comunidade'
+    | '/favoritos'
+    | '/minhas-receitas'
+    | '/notificacoes'
+    | '/pesquisa'
+    | '/publicar-receita'
+    | '/perfil/$username'
+    | '/receita/$id'
+    | '/perfil/editar'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/catalogo-oficial'
+    | '/criar-conta'
+    | '/login'
+    | '/recuperar-conta'
+    | '/_authenticated/comunidade'
+    | '/_authenticated/favoritos'
+    | '/_authenticated/minhas-receitas'
+    | '/_authenticated/notificacoes'
+    | '/_authenticated/pesquisa'
+    | '/_authenticated/publicar-receita'
+    | '/perfil/$username'
+    | '/receita/$id'
+    | '/_authenticated/perfil/editar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  CatalogoOficialRoute: typeof CatalogoOficialRoute
+  CriarContaRoute: typeof CriarContaRoute
+  LoginRoute: typeof LoginRoute
+  RecuperarContaRoute: typeof RecuperarContaRoute
+  PerfilUsernameRoute: typeof PerfilUsernameRoute
+  ReceitaIdRoute: typeof ReceitaIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/recuperar-conta': {
+      id: '/recuperar-conta'
+      path: '/recuperar-conta'
+      fullPath: '/recuperar-conta'
+      preLoaderRoute: typeof RecuperarContaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/criar-conta': {
+      id: '/criar-conta'
+      path: '/criar-conta'
+      fullPath: '/criar-conta'
+      preLoaderRoute: typeof CriarContaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catalogo-oficial': {
+      id: '/catalogo-oficial'
+      path: '/catalogo-oficial'
+      fullPath: '/catalogo-oficial'
+      preLoaderRoute: typeof CatalogoOficialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +261,106 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/receita/$id': {
+      id: '/receita/$id'
+      path: '/receita/$id'
+      fullPath: '/receita/$id'
+      preLoaderRoute: typeof ReceitaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/perfil/$username': {
+      id: '/perfil/$username'
+      path: '/perfil/$username'
+      fullPath: '/perfil/$username'
+      preLoaderRoute: typeof PerfilUsernameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/publicar-receita': {
+      id: '/_authenticated/publicar-receita'
+      path: '/publicar-receita'
+      fullPath: '/publicar-receita'
+      preLoaderRoute: typeof AuthenticatedPublicarReceitaRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/pesquisa': {
+      id: '/_authenticated/pesquisa'
+      path: '/pesquisa'
+      fullPath: '/pesquisa'
+      preLoaderRoute: typeof AuthenticatedPesquisaRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/notificacoes': {
+      id: '/_authenticated/notificacoes'
+      path: '/notificacoes'
+      fullPath: '/notificacoes'
+      preLoaderRoute: typeof AuthenticatedNotificacoesRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/minhas-receitas': {
+      id: '/_authenticated/minhas-receitas'
+      path: '/minhas-receitas'
+      fullPath: '/minhas-receitas'
+      preLoaderRoute: typeof AuthenticatedMinhasReceitasRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/favoritos': {
+      id: '/_authenticated/favoritos'
+      path: '/favoritos'
+      fullPath: '/favoritos'
+      preLoaderRoute: typeof AuthenticatedFavoritosRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/comunidade': {
+      id: '/_authenticated/comunidade'
+      path: '/comunidade'
+      fullPath: '/comunidade'
+      preLoaderRoute: typeof AuthenticatedComunidadeRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/perfil/editar': {
+      id: '/_authenticated/perfil/editar'
+      path: '/perfil/editar'
+      fullPath: '/perfil/editar'
+      preLoaderRoute: typeof AuthenticatedPerfilEditarRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
   }
 }
 
+interface AuthenticatedRouteChildren {
+  AuthenticatedComunidadeRoute: typeof AuthenticatedComunidadeRoute
+  AuthenticatedFavoritosRoute: typeof AuthenticatedFavoritosRoute
+  AuthenticatedMinhasReceitasRoute: typeof AuthenticatedMinhasReceitasRoute
+  AuthenticatedNotificacoesRoute: typeof AuthenticatedNotificacoesRoute
+  AuthenticatedPesquisaRoute: typeof AuthenticatedPesquisaRoute
+  AuthenticatedPublicarReceitaRoute: typeof AuthenticatedPublicarReceitaRoute
+  AuthenticatedPerfilEditarRoute: typeof AuthenticatedPerfilEditarRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedComunidadeRoute: AuthenticatedComunidadeRoute,
+  AuthenticatedFavoritosRoute: AuthenticatedFavoritosRoute,
+  AuthenticatedMinhasReceitasRoute: AuthenticatedMinhasReceitasRoute,
+  AuthenticatedNotificacoesRoute: AuthenticatedNotificacoesRoute,
+  AuthenticatedPesquisaRoute: AuthenticatedPesquisaRoute,
+  AuthenticatedPublicarReceitaRoute: AuthenticatedPublicarReceitaRoute,
+  AuthenticatedPerfilEditarRoute: AuthenticatedPerfilEditarRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  CatalogoOficialRoute: CatalogoOficialRoute,
+  CriarContaRoute: CriarContaRoute,
+  LoginRoute: LoginRoute,
+  RecuperarContaRoute: RecuperarContaRoute,
+  PerfilUsernameRoute: PerfilUsernameRoute,
+  ReceitaIdRoute: ReceitaIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
