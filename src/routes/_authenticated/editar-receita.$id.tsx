@@ -85,7 +85,7 @@ function Page() {
     }
 
     const region = countries?.find((c) => c.name === form.country)?.region ?? null;
-    const newStatus = isAdmin && recipe.r.user_id !== user?.id ? recipe.r.status : "pending";
+    const newStatus = isAdmin && recipe?.r && recipe.r.user_id !== user?.id ? recipe.r.status : "pending";
     const { error } = await supabase.from("recipes").update({
       title, description: desc, country: form.country, region, category: form.category,
       prep_time: form.prep_time ? parseInt(form.prep_time) : null,
