@@ -47,6 +47,7 @@ function Page() {
                   </div>
                 </Link>
                 <span className={`text-xs font-medium px-2 py-1 rounded-full ${STATUS_COLOR[r.status]}`}>{STATUS_LABEL[r.status]}</span>
+                <Button asChild size="sm" variant="outline"><Link to="/editar-receita/$id" params={{ id: r.id }}>Editar</Link></Button>
               </div>
             ))}
           </div>
