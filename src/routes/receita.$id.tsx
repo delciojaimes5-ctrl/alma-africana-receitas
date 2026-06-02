@@ -124,7 +124,7 @@ function Page() {
     void qc.invalidateQueries({ queryKey: ["comments", id] });
   };
 
-  const author = recipe.profiles as { username: string; full_name: string; avatar_url: string | null } | null;
+  const author = (recipe.profiles as unknown) as { username: string; full_name: string; avatar_url: string | null } | null;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -234,7 +234,7 @@ function Page() {
           )}
           <div className="space-y-4">
             {comments?.map((c) => {
-              const p = c.profiles as { username: string; full_name: string; avatar_url: string | null } | null;
+              const p = (c.profiles as unknown) as { username: string; full_name: string; avatar_url: string | null } | null;
               return (
                 <div key={c.id} className="flex gap-3">
                   <Avatar className="h-9 w-9">
