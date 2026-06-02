@@ -1,6 +1,6 @@
 import { Link, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Bell, Heart, LogOut, Menu, Search, User as UserIcon, X, ChefHat, BookOpen, Users, PlusCircle } from "lucide-react";
+import { Bell, Heart, LogOut, Menu, Search, User as UserIcon, X, ChefHat, BookOpen, Users, PlusCircle, Shield } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { supabase } from "@/integrations/supabase/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export function Navbar() {
-  const { user, profile, signOut } = useAuth();
+  const { user, profile, isAdmin, signOut } = useAuth();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [unread, setUnread] = useState(0);
@@ -113,6 +113,11 @@ export function Navbar() {
                   <DropdownMenuItem asChild>
                     <Link to="/publicar-receita"><PlusCircle className="mr-2 h-4 w-4" />Publicar Receita</Link>
                   </DropdownMenuItem>
+                  {isAdmin && (
+                    <DropdownMenuItem asChild>
+                      <Link to="/admin"><Shield className="mr-2 h-4 w-4" />Painel Admin</Link>
+                    </DropdownMenuItem>
+                  )}
                   <DropdownMenuItem asChild className="sm:hidden">
                     <Link to="/favoritos"><Heart className="mr-2 h-4 w-4" />Favoritos</Link>
                   </DropdownMenuItem>

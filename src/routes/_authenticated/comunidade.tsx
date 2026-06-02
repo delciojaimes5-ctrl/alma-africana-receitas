@@ -19,7 +19,7 @@ function Page() {
         .eq("status", "approved")
         .eq("catalogue_type", "community")
         .order("created_at", { ascending: false });
-      return (data ?? []).map((r) => ({ ...r, author: r.profiles as { username: string; full_name: string; avatar_url: string | null } | null }));
+      return (data ?? []).map((r) => ({ ...r, author: (r.profiles as unknown) as { username: string; full_name: string; avatar_url: string | null } | null }));
     },
   });
 

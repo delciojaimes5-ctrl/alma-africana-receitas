@@ -23,7 +23,14 @@ import { Route as AuthenticatedNotificacoesRouteImport } from './routes/_authent
 import { Route as AuthenticatedMinhasReceitasRouteImport } from './routes/_authenticated/minhas-receitas'
 import { Route as AuthenticatedFavoritosRouteImport } from './routes/_authenticated/favoritos'
 import { Route as AuthenticatedComunidadeRouteImport } from './routes/_authenticated/comunidade'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
 import { Route as AuthenticatedPerfilEditarRouteImport } from './routes/_authenticated/perfil.editar'
+import { Route as AuthenticatedEditarReceitaIdRouteImport } from './routes/_authenticated/editar-receita.$id'
+import { Route as AuthenticatedAdminUtilizadoresRouteImport } from './routes/_authenticated/admin/utilizadores'
+import { Route as AuthenticatedAdminPendentesRouteImport } from './routes/_authenticated/admin/pendentes'
+import { Route as AuthenticatedAdminNotificacoesRouteImport } from './routes/_authenticated/admin/notificacoes'
+import { Route as AuthenticatedAdminCatalogoRouteImport } from './routes/_authenticated/admin/catalogo'
 
 const RecuperarContaRoute = RecuperarContaRouteImport.update({
   id: '/recuperar-conta',
@@ -97,11 +104,51 @@ const AuthenticatedComunidadeRoute = AuthenticatedComunidadeRouteImport.update({
   path: '/comunidade',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
 const AuthenticatedPerfilEditarRoute =
   AuthenticatedPerfilEditarRouteImport.update({
     id: '/perfil/editar',
     path: '/perfil/editar',
     getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedEditarReceitaIdRoute =
+  AuthenticatedEditarReceitaIdRouteImport.update({
+    id: '/editar-receita/$id',
+    path: '/editar-receita/$id',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedAdminUtilizadoresRoute =
+  AuthenticatedAdminUtilizadoresRouteImport.update({
+    id: '/utilizadores',
+    path: '/utilizadores',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminPendentesRoute =
+  AuthenticatedAdminPendentesRouteImport.update({
+    id: '/pendentes',
+    path: '/pendentes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNotificacoesRoute =
+  AuthenticatedAdminNotificacoesRouteImport.update({
+    id: '/notificacoes',
+    path: '/notificacoes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminCatalogoRoute =
+  AuthenticatedAdminCatalogoRouteImport.update({
+    id: '/catalogo',
+    path: '/catalogo',
+    getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -110,6 +157,7 @@ export interface FileRoutesByFullPath {
   '/criar-conta': typeof CriarContaRoute
   '/login': typeof LoginRoute
   '/recuperar-conta': typeof RecuperarContaRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/comunidade': typeof AuthenticatedComunidadeRoute
   '/favoritos': typeof AuthenticatedFavoritosRoute
   '/minhas-receitas': typeof AuthenticatedMinhasReceitasRoute
@@ -118,7 +166,13 @@ export interface FileRoutesByFullPath {
   '/publicar-receita': typeof AuthenticatedPublicarReceitaRoute
   '/perfil/$username': typeof PerfilUsernameRoute
   '/receita/$id': typeof ReceitaIdRoute
+  '/admin/catalogo': typeof AuthenticatedAdminCatalogoRoute
+  '/admin/notificacoes': typeof AuthenticatedAdminNotificacoesRoute
+  '/admin/pendentes': typeof AuthenticatedAdminPendentesRoute
+  '/admin/utilizadores': typeof AuthenticatedAdminUtilizadoresRoute
+  '/editar-receita/$id': typeof AuthenticatedEditarReceitaIdRoute
   '/perfil/editar': typeof AuthenticatedPerfilEditarRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,7 +188,13 @@ export interface FileRoutesByTo {
   '/publicar-receita': typeof AuthenticatedPublicarReceitaRoute
   '/perfil/$username': typeof PerfilUsernameRoute
   '/receita/$id': typeof ReceitaIdRoute
+  '/admin/catalogo': typeof AuthenticatedAdminCatalogoRoute
+  '/admin/notificacoes': typeof AuthenticatedAdminNotificacoesRoute
+  '/admin/pendentes': typeof AuthenticatedAdminPendentesRoute
+  '/admin/utilizadores': typeof AuthenticatedAdminUtilizadoresRoute
+  '/editar-receita/$id': typeof AuthenticatedEditarReceitaIdRoute
   '/perfil/editar': typeof AuthenticatedPerfilEditarRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -144,6 +204,7 @@ export interface FileRoutesById {
   '/criar-conta': typeof CriarContaRoute
   '/login': typeof LoginRoute
   '/recuperar-conta': typeof RecuperarContaRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/comunidade': typeof AuthenticatedComunidadeRoute
   '/_authenticated/favoritos': typeof AuthenticatedFavoritosRoute
   '/_authenticated/minhas-receitas': typeof AuthenticatedMinhasReceitasRoute
@@ -152,7 +213,13 @@ export interface FileRoutesById {
   '/_authenticated/publicar-receita': typeof AuthenticatedPublicarReceitaRoute
   '/perfil/$username': typeof PerfilUsernameRoute
   '/receita/$id': typeof ReceitaIdRoute
+  '/_authenticated/admin/catalogo': typeof AuthenticatedAdminCatalogoRoute
+  '/_authenticated/admin/notificacoes': typeof AuthenticatedAdminNotificacoesRoute
+  '/_authenticated/admin/pendentes': typeof AuthenticatedAdminPendentesRoute
+  '/_authenticated/admin/utilizadores': typeof AuthenticatedAdminUtilizadoresRoute
+  '/_authenticated/editar-receita/$id': typeof AuthenticatedEditarReceitaIdRoute
   '/_authenticated/perfil/editar': typeof AuthenticatedPerfilEditarRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -162,6 +229,7 @@ export interface FileRouteTypes {
     | '/criar-conta'
     | '/login'
     | '/recuperar-conta'
+    | '/admin'
     | '/comunidade'
     | '/favoritos'
     | '/minhas-receitas'
@@ -170,7 +238,13 @@ export interface FileRouteTypes {
     | '/publicar-receita'
     | '/perfil/$username'
     | '/receita/$id'
+    | '/admin/catalogo'
+    | '/admin/notificacoes'
+    | '/admin/pendentes'
+    | '/admin/utilizadores'
+    | '/editar-receita/$id'
     | '/perfil/editar'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -186,7 +260,13 @@ export interface FileRouteTypes {
     | '/publicar-receita'
     | '/perfil/$username'
     | '/receita/$id'
+    | '/admin/catalogo'
+    | '/admin/notificacoes'
+    | '/admin/pendentes'
+    | '/admin/utilizadores'
+    | '/editar-receita/$id'
     | '/perfil/editar'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -195,6 +275,7 @@ export interface FileRouteTypes {
     | '/criar-conta'
     | '/login'
     | '/recuperar-conta'
+    | '/_authenticated/admin'
     | '/_authenticated/comunidade'
     | '/_authenticated/favoritos'
     | '/_authenticated/minhas-receitas'
@@ -203,7 +284,13 @@ export interface FileRouteTypes {
     | '/_authenticated/publicar-receita'
     | '/perfil/$username'
     | '/receita/$id'
+    | '/_authenticated/admin/catalogo'
+    | '/_authenticated/admin/notificacoes'
+    | '/_authenticated/admin/pendentes'
+    | '/_authenticated/admin/utilizadores'
+    | '/_authenticated/editar-receita/$id'
     | '/_authenticated/perfil/editar'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -317,6 +404,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedComunidadeRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/perfil/editar': {
       id: '/_authenticated/perfil/editar'
       path: '/perfil/editar'
@@ -324,26 +425,84 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPerfilEditarRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/editar-receita/$id': {
+      id: '/_authenticated/editar-receita/$id'
+      path: '/editar-receita/$id'
+      fullPath: '/editar-receita/$id'
+      preLoaderRoute: typeof AuthenticatedEditarReceitaIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/admin/utilizadores': {
+      id: '/_authenticated/admin/utilizadores'
+      path: '/utilizadores'
+      fullPath: '/admin/utilizadores'
+      preLoaderRoute: typeof AuthenticatedAdminUtilizadoresRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/pendentes': {
+      id: '/_authenticated/admin/pendentes'
+      path: '/pendentes'
+      fullPath: '/admin/pendentes'
+      preLoaderRoute: typeof AuthenticatedAdminPendentesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/notificacoes': {
+      id: '/_authenticated/admin/notificacoes'
+      path: '/notificacoes'
+      fullPath: '/admin/notificacoes'
+      preLoaderRoute: typeof AuthenticatedAdminNotificacoesRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/catalogo': {
+      id: '/_authenticated/admin/catalogo'
+      path: '/catalogo'
+      fullPath: '/admin/catalogo'
+      preLoaderRoute: typeof AuthenticatedAdminCatalogoRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminCatalogoRoute: typeof AuthenticatedAdminCatalogoRoute
+  AuthenticatedAdminNotificacoesRoute: typeof AuthenticatedAdminNotificacoesRoute
+  AuthenticatedAdminPendentesRoute: typeof AuthenticatedAdminPendentesRoute
+  AuthenticatedAdminUtilizadoresRoute: typeof AuthenticatedAdminUtilizadoresRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminCatalogoRoute: AuthenticatedAdminCatalogoRoute,
+  AuthenticatedAdminNotificacoesRoute: AuthenticatedAdminNotificacoesRoute,
+  AuthenticatedAdminPendentesRoute: AuthenticatedAdminPendentesRoute,
+  AuthenticatedAdminUtilizadoresRoute: AuthenticatedAdminUtilizadoresRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
 interface AuthenticatedRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
   AuthenticatedComunidadeRoute: typeof AuthenticatedComunidadeRoute
   AuthenticatedFavoritosRoute: typeof AuthenticatedFavoritosRoute
   AuthenticatedMinhasReceitasRoute: typeof AuthenticatedMinhasReceitasRoute
   AuthenticatedNotificacoesRoute: typeof AuthenticatedNotificacoesRoute
   AuthenticatedPesquisaRoute: typeof AuthenticatedPesquisaRoute
   AuthenticatedPublicarReceitaRoute: typeof AuthenticatedPublicarReceitaRoute
+  AuthenticatedEditarReceitaIdRoute: typeof AuthenticatedEditarReceitaIdRoute
   AuthenticatedPerfilEditarRoute: typeof AuthenticatedPerfilEditarRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
   AuthenticatedComunidadeRoute: AuthenticatedComunidadeRoute,
   AuthenticatedFavoritosRoute: AuthenticatedFavoritosRoute,
   AuthenticatedMinhasReceitasRoute: AuthenticatedMinhasReceitasRoute,
   AuthenticatedNotificacoesRoute: AuthenticatedNotificacoesRoute,
   AuthenticatedPesquisaRoute: AuthenticatedPesquisaRoute,
   AuthenticatedPublicarReceitaRoute: AuthenticatedPublicarReceitaRoute,
+  AuthenticatedEditarReceitaIdRoute: AuthenticatedEditarReceitaIdRoute,
   AuthenticatedPerfilEditarRoute: AuthenticatedPerfilEditarRoute,
 }
 
@@ -364,13 +523,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
