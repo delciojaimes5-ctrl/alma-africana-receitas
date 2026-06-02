@@ -112,6 +112,7 @@ export function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
                     <Link to="/publicar-receita"><PlusCircle className="mr-2 h-4 w-4" />Publicar Receita</Link>
+                  </DropdownMenuItem>
                   {isAdmin && (
                     <DropdownMenuItem asChild>
                       <Link to="/admin"><Shield className="mr-2 h-4 w-4" />Painel Admin</Link>
