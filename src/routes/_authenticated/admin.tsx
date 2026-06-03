@@ -1,6 +1,6 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
-import { LayoutDashboard, Clock, Users, FolderTree, Bell, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, Clock, Users, FolderTree, Bell, ArrowLeft, Flag, FileBarChart } from "lucide-react";
 import { useAuth } from "@/lib/auth-context";
 import { useNavigate } from "@tanstack/react-router";
 
@@ -11,8 +11,10 @@ export const Route = createFileRoute("/_authenticated/admin")({
 const NAV = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/pendentes", label: "Receitas pendentes", icon: Clock },
+  { to: "/admin/denuncias", label: "Denúncias", icon: Flag },
   { to: "/admin/utilizadores", label: "Utilizadores", icon: Users },
   { to: "/admin/catalogo", label: "Categorias & Países", icon: FolderTree },
+  { to: "/admin/relatorios", label: "Relatórios", icon: FileBarChart },
   { to: "/admin/notificacoes", label: "Notificações", icon: Bell },
 ];
 
