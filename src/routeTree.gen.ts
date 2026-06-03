@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RecuperarContaRouteImport } from './routes/recuperar-conta'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as CriarContaRouteImport } from './routes/criar-conta'
@@ -28,10 +29,17 @@ import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedPerfilEditarRouteImport } from './routes/_authenticated/perfil.editar'
 import { Route as AuthenticatedEditarReceitaIdRouteImport } from './routes/_authenticated/editar-receita.$id'
 import { Route as AuthenticatedAdminUtilizadoresRouteImport } from './routes/_authenticated/admin/utilizadores'
+import { Route as AuthenticatedAdminRelatoriosRouteImport } from './routes/_authenticated/admin/relatorios'
 import { Route as AuthenticatedAdminPendentesRouteImport } from './routes/_authenticated/admin/pendentes'
 import { Route as AuthenticatedAdminNotificacoesRouteImport } from './routes/_authenticated/admin/notificacoes'
+import { Route as AuthenticatedAdminDenunciasRouteImport } from './routes/_authenticated/admin/denuncias'
 import { Route as AuthenticatedAdminCatalogoRouteImport } from './routes/_authenticated/admin/catalogo'
 
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RecuperarContaRoute = RecuperarContaRouteImport.update({
   id: '/recuperar-conta',
   path: '/recuperar-conta',
@@ -132,6 +140,12 @@ const AuthenticatedAdminUtilizadoresRoute =
     path: '/utilizadores',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminRelatoriosRoute =
+  AuthenticatedAdminRelatoriosRouteImport.update({
+    id: '/relatorios',
+    path: '/relatorios',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminPendentesRoute =
   AuthenticatedAdminPendentesRouteImport.update({
     id: '/pendentes',
@@ -142,6 +156,12 @@ const AuthenticatedAdminNotificacoesRoute =
   AuthenticatedAdminNotificacoesRouteImport.update({
     id: '/notificacoes',
     path: '/notificacoes',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminDenunciasRoute =
+  AuthenticatedAdminDenunciasRouteImport.update({
+    id: '/denuncias',
+    path: '/denuncias',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedAdminCatalogoRoute =
@@ -157,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/criar-conta': typeof CriarContaRoute
   '/login': typeof LoginRoute
   '/recuperar-conta': typeof RecuperarContaRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/comunidade': typeof AuthenticatedComunidadeRoute
   '/favoritos': typeof AuthenticatedFavoritosRoute
@@ -167,8 +188,10 @@ export interface FileRoutesByFullPath {
   '/perfil/$username': typeof PerfilUsernameRoute
   '/receita/$id': typeof ReceitaIdRoute
   '/admin/catalogo': typeof AuthenticatedAdminCatalogoRoute
+  '/admin/denuncias': typeof AuthenticatedAdminDenunciasRoute
   '/admin/notificacoes': typeof AuthenticatedAdminNotificacoesRoute
   '/admin/pendentes': typeof AuthenticatedAdminPendentesRoute
+  '/admin/relatorios': typeof AuthenticatedAdminRelatoriosRoute
   '/admin/utilizadores': typeof AuthenticatedAdminUtilizadoresRoute
   '/editar-receita/$id': typeof AuthenticatedEditarReceitaIdRoute
   '/perfil/editar': typeof AuthenticatedPerfilEditarRoute
@@ -180,6 +203,7 @@ export interface FileRoutesByTo {
   '/criar-conta': typeof CriarContaRoute
   '/login': typeof LoginRoute
   '/recuperar-conta': typeof RecuperarContaRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/comunidade': typeof AuthenticatedComunidadeRoute
   '/favoritos': typeof AuthenticatedFavoritosRoute
   '/minhas-receitas': typeof AuthenticatedMinhasReceitasRoute
@@ -189,8 +213,10 @@ export interface FileRoutesByTo {
   '/perfil/$username': typeof PerfilUsernameRoute
   '/receita/$id': typeof ReceitaIdRoute
   '/admin/catalogo': typeof AuthenticatedAdminCatalogoRoute
+  '/admin/denuncias': typeof AuthenticatedAdminDenunciasRoute
   '/admin/notificacoes': typeof AuthenticatedAdminNotificacoesRoute
   '/admin/pendentes': typeof AuthenticatedAdminPendentesRoute
+  '/admin/relatorios': typeof AuthenticatedAdminRelatoriosRoute
   '/admin/utilizadores': typeof AuthenticatedAdminUtilizadoresRoute
   '/editar-receita/$id': typeof AuthenticatedEditarReceitaIdRoute
   '/perfil/editar': typeof AuthenticatedPerfilEditarRoute
@@ -204,6 +230,7 @@ export interface FileRoutesById {
   '/criar-conta': typeof CriarContaRoute
   '/login': typeof LoginRoute
   '/recuperar-conta': typeof RecuperarContaRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/_authenticated/comunidade': typeof AuthenticatedComunidadeRoute
   '/_authenticated/favoritos': typeof AuthenticatedFavoritosRoute
@@ -214,8 +241,10 @@ export interface FileRoutesById {
   '/perfil/$username': typeof PerfilUsernameRoute
   '/receita/$id': typeof ReceitaIdRoute
   '/_authenticated/admin/catalogo': typeof AuthenticatedAdminCatalogoRoute
+  '/_authenticated/admin/denuncias': typeof AuthenticatedAdminDenunciasRoute
   '/_authenticated/admin/notificacoes': typeof AuthenticatedAdminNotificacoesRoute
   '/_authenticated/admin/pendentes': typeof AuthenticatedAdminPendentesRoute
+  '/_authenticated/admin/relatorios': typeof AuthenticatedAdminRelatoriosRoute
   '/_authenticated/admin/utilizadores': typeof AuthenticatedAdminUtilizadoresRoute
   '/_authenticated/editar-receita/$id': typeof AuthenticatedEditarReceitaIdRoute
   '/_authenticated/perfil/editar': typeof AuthenticatedPerfilEditarRoute
@@ -229,6 +258,7 @@ export interface FileRouteTypes {
     | '/criar-conta'
     | '/login'
     | '/recuperar-conta'
+    | '/reset-password'
     | '/admin'
     | '/comunidade'
     | '/favoritos'
@@ -239,8 +269,10 @@ export interface FileRouteTypes {
     | '/perfil/$username'
     | '/receita/$id'
     | '/admin/catalogo'
+    | '/admin/denuncias'
     | '/admin/notificacoes'
     | '/admin/pendentes'
+    | '/admin/relatorios'
     | '/admin/utilizadores'
     | '/editar-receita/$id'
     | '/perfil/editar'
@@ -252,6 +284,7 @@ export interface FileRouteTypes {
     | '/criar-conta'
     | '/login'
     | '/recuperar-conta'
+    | '/reset-password'
     | '/comunidade'
     | '/favoritos'
     | '/minhas-receitas'
@@ -261,8 +294,10 @@ export interface FileRouteTypes {
     | '/perfil/$username'
     | '/receita/$id'
     | '/admin/catalogo'
+    | '/admin/denuncias'
     | '/admin/notificacoes'
     | '/admin/pendentes'
+    | '/admin/relatorios'
     | '/admin/utilizadores'
     | '/editar-receita/$id'
     | '/perfil/editar'
@@ -275,6 +310,7 @@ export interface FileRouteTypes {
     | '/criar-conta'
     | '/login'
     | '/recuperar-conta'
+    | '/reset-password'
     | '/_authenticated/admin'
     | '/_authenticated/comunidade'
     | '/_authenticated/favoritos'
@@ -285,8 +321,10 @@ export interface FileRouteTypes {
     | '/perfil/$username'
     | '/receita/$id'
     | '/_authenticated/admin/catalogo'
+    | '/_authenticated/admin/denuncias'
     | '/_authenticated/admin/notificacoes'
     | '/_authenticated/admin/pendentes'
+    | '/_authenticated/admin/relatorios'
     | '/_authenticated/admin/utilizadores'
     | '/_authenticated/editar-receita/$id'
     | '/_authenticated/perfil/editar'
@@ -300,12 +338,20 @@ export interface RootRouteChildren {
   CriarContaRoute: typeof CriarContaRoute
   LoginRoute: typeof LoginRoute
   RecuperarContaRoute: typeof RecuperarContaRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   PerfilUsernameRoute: typeof PerfilUsernameRoute
   ReceitaIdRoute: typeof ReceitaIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/recuperar-conta': {
       id: '/recuperar-conta'
       path: '/recuperar-conta'
@@ -439,6 +485,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminUtilizadoresRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/relatorios': {
+      id: '/_authenticated/admin/relatorios'
+      path: '/relatorios'
+      fullPath: '/admin/relatorios'
+      preLoaderRoute: typeof AuthenticatedAdminRelatoriosRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/pendentes': {
       id: '/_authenticated/admin/pendentes'
       path: '/pendentes'
@@ -453,6 +506,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminNotificacoesRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/denuncias': {
+      id: '/_authenticated/admin/denuncias'
+      path: '/denuncias'
+      fullPath: '/admin/denuncias'
+      preLoaderRoute: typeof AuthenticatedAdminDenunciasRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/catalogo': {
       id: '/_authenticated/admin/catalogo'
       path: '/catalogo'
@@ -465,16 +525,20 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminCatalogoRoute: typeof AuthenticatedAdminCatalogoRoute
+  AuthenticatedAdminDenunciasRoute: typeof AuthenticatedAdminDenunciasRoute
   AuthenticatedAdminNotificacoesRoute: typeof AuthenticatedAdminNotificacoesRoute
   AuthenticatedAdminPendentesRoute: typeof AuthenticatedAdminPendentesRoute
+  AuthenticatedAdminRelatoriosRoute: typeof AuthenticatedAdminRelatoriosRoute
   AuthenticatedAdminUtilizadoresRoute: typeof AuthenticatedAdminUtilizadoresRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
   AuthenticatedAdminCatalogoRoute: AuthenticatedAdminCatalogoRoute,
+  AuthenticatedAdminDenunciasRoute: AuthenticatedAdminDenunciasRoute,
   AuthenticatedAdminNotificacoesRoute: AuthenticatedAdminNotificacoesRoute,
   AuthenticatedAdminPendentesRoute: AuthenticatedAdminPendentesRoute,
+  AuthenticatedAdminRelatoriosRoute: AuthenticatedAdminRelatoriosRoute,
   AuthenticatedAdminUtilizadoresRoute: AuthenticatedAdminUtilizadoresRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
@@ -517,19 +581,10 @@ const rootRouteChildren: RootRouteChildren = {
   CriarContaRoute: CriarContaRoute,
   LoginRoute: LoginRoute,
   RecuperarContaRoute: RecuperarContaRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   PerfilUsernameRoute: PerfilUsernameRoute,
   ReceitaIdRoute: ReceitaIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

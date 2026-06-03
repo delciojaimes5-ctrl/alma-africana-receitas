@@ -34,7 +34,7 @@ function Page() {
     const { data: existing } = await supabase.from("profiles").select("id").eq("username", form.username).maybeSingle();
     if (existing) { setLoading(false); return toast.error("Username já em uso"); }
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
       options: {
@@ -49,8 +49,13 @@ function Page() {
     });
     setLoading(false);
     if (error) return toast.error(error.message);
-    toast.success("Conta criada! Verifica o teu email para confirmar.");
-    void navigate({ to: "/login" });
+    // Supabase devolve sucesso silencioso para emails já registados, mas o array
+    // `identities` vem vazio nesse caso. Detectamos para mostrar mensagem clara.
+    if (data.user && data.user.identities && data.user.identities.length === 0) {
+      return toast.error("Este email já está registado. Tenta entrar ou recuperar a palavra-passe.");
+    }
+    toast.success("Conta criada! Verifica o teu email para confirmar antes de entrar.", { duration: 6000 });
+    void navigate({ to: "/login", search: { message: "Confirma o teu email antes de entrar — verifica a tua caixa de entrada." } });
   };
 
   return (

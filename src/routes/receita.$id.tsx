@@ -10,6 +10,7 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Textarea } from "@/components/ui/textarea";
+import { ReportButton } from "@/components/ReportButton";
 
 export const Route = createFileRoute("/receita/$id")({
   component: Page,
@@ -160,6 +161,9 @@ function Page() {
             <Button size="sm" variant={favourited ? "default" : "outline"} onClick={toggleFav}>
               <BookmarkPlus className="h-4 w-4 mr-1" />{favourited ? "Guardado" : "Guardar"}
             </Button>
+            {user && recipe.user_id !== user.id && (
+              <ReportButton targetType="recipe" targetId={recipe.id} variant="outline" size="sm" />
+            )}
           </div>
         </div>
 
