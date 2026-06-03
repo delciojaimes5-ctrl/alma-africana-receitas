@@ -19,6 +19,7 @@ function Page() {
   const [ready, setReady] = useState(false);
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
+  const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
