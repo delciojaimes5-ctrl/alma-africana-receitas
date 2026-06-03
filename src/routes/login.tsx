@@ -1,5 +1,6 @@
 import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
@@ -22,6 +23,7 @@ function Page() {
   const search = useSearch({ from: "/login" });
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (e: React.FormEvent) => {
@@ -44,7 +46,15 @@ function Page() {
           {search.message && <div className="mb-4 rounded-md bg-accent/30 p-3 text-sm">{search.message}</div>}
           <form onSubmit={onSubmit} className="space-y-4">
             <div><Label htmlFor="email">Email</Label><Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></div>
-            <div><Label htmlFor="password">Palavra-passe</Label><Input id="password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} /></div>
+            <div>
+              <Label htmlFor="password">Palavra-passe</Label>
+              <div className="relative">
+                <Input id="password" type={show ? "text" : "password"} required value={password} onChange={(e) => setPassword(e.target.value)} className="pr-10" />
+                <button type="button" onClick={() => setShow(!show)} className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground" aria-label={show ? "Ocultar" : "Mostrar"}>
+                  {show ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                </button>
+              </div>
+            </div>
             <Button type="submit" className="w-full" disabled={loading}>{loading ? "A entrar…" : "Entrar"}</Button>
           </form>
           <div className="mt-4 text-sm text-center space-y-2">

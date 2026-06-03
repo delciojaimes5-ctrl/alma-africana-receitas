@@ -37,8 +37,10 @@ function Page() {
           <h1 className="text-2xl font-bold mb-1">Recuperar Conta</h1>
           <p className="text-sm text-muted-foreground mb-6">Enviamos-te um link para definir nova palavra-passe.</p>
           {sent ? (
-            <div className="rounded-md bg-success/10 text-success-foreground p-4 text-sm border border-success/30">
-              Verifica o teu email — enviámos as instruções.
+            <div className="rounded-md bg-success/10 text-success-foreground p-4 text-sm border border-success/30 space-y-2">
+              <p className="font-medium">Pedido enviado!</p>
+              <p>Se o email <strong>{email}</strong> estiver registado na nossa plataforma, receberás dentro de minutos um link para definir uma nova palavra-passe.</p>
+              <p className="text-xs text-muted-foreground">Por motivos de segurança, não confirmamos se um email existe ou não. Verifica também a pasta de spam.</p>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="space-y-4">
