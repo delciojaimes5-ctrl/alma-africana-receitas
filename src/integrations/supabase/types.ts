@@ -328,6 +328,42 @@ export type Database = {
         }
         Relationships: []
       }
+      reports: {
+        Row: {
+          admin_notes: string | null
+          created_at: string
+          id: string
+          reason: string
+          reporter_id: string
+          resolved_at: string | null
+          status: Database["public"]["Enums"]["report_status"]
+          target_id: string
+          target_type: Database["public"]["Enums"]["report_target"]
+        }
+        Insert: {
+          admin_notes?: string | null
+          created_at?: string
+          id?: string
+          reason: string
+          reporter_id: string
+          resolved_at?: string | null
+          status?: Database["public"]["Enums"]["report_status"]
+          target_id: string
+          target_type: Database["public"]["Enums"]["report_target"]
+        }
+        Update: {
+          admin_notes?: string | null
+          created_at?: string
+          id?: string
+          reason?: string
+          reporter_id?: string
+          resolved_at?: string | null
+          status?: Database["public"]["Enums"]["report_status"]
+          target_id?: string
+          target_type?: Database["public"]["Enums"]["report_target"]
+        }
+        Relationships: []
+      }
       steps: {
         Row: {
           description: string
@@ -395,6 +431,8 @@ export type Database = {
       app_role: "user" | "admin"
       catalogue_type: "official" | "community"
       recipe_status: "pending" | "approved" | "rejected"
+      report_status: "pending" | "resolved" | "dismissed"
+      report_target: "recipe" | "comment" | "profile"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -525,6 +563,8 @@ export const Constants = {
       app_role: ["user", "admin"],
       catalogue_type: ["official", "community"],
       recipe_status: ["pending", "approved", "rejected"],
+      report_status: ["pending", "resolved", "dismissed"],
+      report_target: ["recipe", "comment", "profile"],
     },
   },
 } as const
